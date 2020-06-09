@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float _moveSpeed;
 	[SerializeField] CharacterController _controller;
 
+	Vector3 _moveInput;
+
 	#endregion
 
 	#region MonoBehaviour Methods
@@ -20,7 +22,11 @@ public class PlayerController : MonoBehaviour
 	
 	void Update() 
 	{
-		
+		_moveInput.x = Input.GetAxis("Horizontal");
+		_moveInput.z = Input.GetAxis("Vertical");
+		_moveInput *= _moveSpeed * Time.deltaTime;
+
+		_controller.Move(_moveInput);
 	}
 	#endregion
 
