@@ -924,6 +924,9 @@ MonoBehaviour:
   _moveSpeed: 8
   _controller: {fileID: 1755865401}
   _theCamera: {fileID: 1269194713}
+  _mouseSensitivity: 2
+  _invertX: 0
+  _invertY: 0
 --- !u!143 &1755865401
 CharacterController:
   m_ObjectHideFlags: 0

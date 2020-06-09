@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float _moveSpeed;
 	[SerializeField] CharacterController _controller;
 	[SerializeField] Transform _theCamera;
+	[SerializeField] float _mouseSensitivity;
+	public bool _invertX, _invertY;
 
 	Vector3 _moveInput;
 
@@ -31,7 +33,16 @@ public class PlayerController : MonoBehaviour
 		_controller.Move(_moveInput);
 
 		//control camera & player rotation...
-		Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+		Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * _mouseSensitivity;
+
+		if (_invertX)
+		{
+			mouseInput.x = -mouseInput.x;
+		}
+		if (_invertY)
+		{
+			mouseInput.y = -mouseInput.y;
+		}
 
 		transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
 
