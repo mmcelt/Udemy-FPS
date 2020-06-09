@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{	
+{
 	#region Fields
 
-	
+	[SerializeField] float _moveSpeed;
+	[SerializeField] CharacterController _controller;
+
 	#endregion
 
 	#region MonoBehaviour Methods
