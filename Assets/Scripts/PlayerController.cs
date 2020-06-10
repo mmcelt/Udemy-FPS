@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 	#region Fields
 
-	[SerializeField] float _moveSpeed;
+	[SerializeField] float _moveSpeed, _gravityModifier;
 	[SerializeField] CharacterController _controller;
 	[SerializeField] Transform _theCamera;
 	[SerializeField] float _mouseSensitivity;
@@ -30,12 +30,24 @@ public class PlayerController : MonoBehaviour
 		//_moveInput.z = Input.GetAxis("Vertical");
 		//_moveInput *= _moveSpeed * Time.deltaTime;
 
+		//store y velocity
+		float yStore = _moveInput.y;
+
 		Vector3 vertMove = transform.forward * Input.GetAxis("Vertical");
 		Vector3 horizMove = transform.right * Input.GetAxis("Horizontal");
 
 		_moveInput = vertMove + horizMove;
 		_moveInput.Normalize();
 		_moveInput *= _moveSpeed;
+
+		_moveInput.y = yStore;
+
+		_moveInput.y += Physics.gravity.y * _gravityModifier * Time.deltaTime;
+
+		if (_controller.isGrounded)
+		{
+			_moveInput.y = Physics.gravity.y * Time.deltaTime* _gravityModifier;
+		}
 
 		_controller.Move(_moveInput * Time.deltaTime);
 

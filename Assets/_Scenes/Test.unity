@@ -1009,6 +1009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 8
+  _gravityModifier: 2
   _controller: {fileID: 1755865401}
   _theCamera: {fileID: 1401427198}
   _mouseSensitivity: 2
