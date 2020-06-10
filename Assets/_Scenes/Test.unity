@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 60565307}
   - component: {fileID: 60565306}
   - component: {fileID: 60565305}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 607049374}
   - component: {fileID: 607049373}
   - component: {fileID: 607049372}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 742925894}
   - component: {fileID: 742925893}
   - component: {fileID: 742925892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 983859954}
   - component: {fileID: 983859953}
   - component: {fileID: 983859952}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 1210498535}
   - component: {fileID: 1210498534}
   - component: {fileID: 1210498533}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 1324944825}
   - component: {fileID: 1324944824}
   - component: {fileID: 1324944823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,6 +813,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324944821}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1369284278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369284279}
+  m_Layer: 0
+  m_Name: Ground Checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369284279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369284278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1755865402}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1401427197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,9 +1040,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 8
   _gravityModifier: 2
+  _jumpPower: 10
   _controller: {fileID: 1755865401}
   _theCamera: {fileID: 1401427198}
+  _groundCheckPoint: {fileID: 1369284279}
   _mouseSensitivity: 2
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
   _invertX: 0
   _invertY: 0
 --- !u!143 &1755865401
@@ -1046,6 +1081,7 @@ Transform:
   m_Children:
   - {fileID: 1832275267}
   - {fileID: 1401427198}
+  - {fileID: 1369284279}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
