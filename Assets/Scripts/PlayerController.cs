@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 	#region Fields
 
-	[SerializeField] float _moveSpeed, _gravityModifier, _jumpPower;
+	[SerializeField] float _moveSpeed, _gravityModifier, _jumpPower, _runSpeed = 12f;
 	[SerializeField] CharacterController _controller;
 	[SerializeField] Transform _theCamera, _groundCheckPoint;
 	[SerializeField] float _mouseSensitivity;
@@ -41,7 +41,15 @@ public class PlayerController : MonoBehaviour
 
 		_moveInput = vertMove + horizMove;
 		_moveInput.Normalize();
-		_moveInput *= _moveSpeed;
+
+		if (Input.GetKey(KeyCode.LeftShift))
+		{
+			_moveInput *= _runSpeed;
+		}
+		else
+		{
+			_moveInput *= _moveSpeed;
+		}
 
 		_moveInput.y = yStore;
 
