@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 	public bool _invertX, _invertY;
 
 	Vector3 _moveInput;
-	bool _canJump;
+	bool canJump, canDoubleJump;
 
 	#endregion
 
@@ -52,12 +52,23 @@ public class PlayerController : MonoBehaviour
 			_moveInput.y = Physics.gravity.y * Time.deltaTime* _gravityModifier;
 		}
 
-		_canJump = Physics.OverlapSphere(_groundCheckPoint.position, 0.25f, _whatIsGround).Length > 0;
+		canJump = Physics.OverlapSphere(_groundCheckPoint.position, 0.25f, _whatIsGround).Length > 0;
+
+		if (canJump)
+		{
+			canDoubleJump = true;
+		}
 
 		//handle jumping
-		if (Input.GetKeyDown(KeyCode.Space) && _canJump)
+		if (Input.GetKeyDown(KeyCode.Space) && canJump)
+		{
+			//_canDoubleJump = true;
+			_moveInput.y = _jumpPower;
+		}
+		else if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump)
 		{
 			_moveInput.y = _jumpPower;
+			canDoubleJump = false;
 		}
 
 		_controller.Move(_moveInput * Time.deltaTime);
