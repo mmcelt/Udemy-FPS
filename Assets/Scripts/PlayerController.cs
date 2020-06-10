@@ -26,11 +26,18 @@ public class PlayerController : MonoBehaviour
 	void Update() 
 	{
 		//move the player...
-		_moveInput.x = Input.GetAxis("Horizontal");
-		_moveInput.z = Input.GetAxis("Vertical");
-		_moveInput *= _moveSpeed * Time.deltaTime;
+		//_moveInput.x = Input.GetAxis("Horizontal");
+		//_moveInput.z = Input.GetAxis("Vertical");
+		//_moveInput *= _moveSpeed * Time.deltaTime;
 
-		_controller.Move(_moveInput);
+		Vector3 vertMove = transform.forward * Input.GetAxis("Vertical");
+		Vector3 horizMove = transform.right * Input.GetAxis("Horizontal");
+
+		_moveInput = vertMove + horizMove;
+		_moveInput.Normalize();
+		_moveInput *= _moveSpeed;
+
+		_controller.Move(_moveInput * Time.deltaTime);
 
 		//control camera & player rotation...
 		Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * _mouseSensitivity;
