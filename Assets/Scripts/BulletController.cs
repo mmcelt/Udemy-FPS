@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
 
 	[SerializeField] float _moveSpeed, _lifetime;
 	[SerializeField] Rigidbody _theRB;
+	[SerializeField] GameObject _impactEffect;
 
 	#endregion
 
@@ -27,7 +28,7 @@ public class BulletController : MonoBehaviour
 	void OnTriggerEnter(Collider other)
 	{
 		Destroy(gameObject);
-
+		Instantiate(_impactEffect, transform.position, transform.rotation);
 	}
 	#endregion
 
