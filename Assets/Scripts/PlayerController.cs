@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
 
 	public bool _invertX, _invertY;
 
+	[Header("Shooting")]
+	[SerializeField] GameObject _bulletPrefab;
+	[SerializeField] Transform _firePoint;
+
 	Vector3 _moveInput;
 	bool _canJump, _canDoubleJump;
 
@@ -98,6 +102,13 @@ public class PlayerController : MonoBehaviour
 		transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
 
 		_theCamera.rotation = Quaternion.Euler(_theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
+
+
+		//shooting
+		if (Input.GetMouseButtonDown(0))
+		{
+			Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+		}
 
 		_anim.SetFloat("moveSpeed", _moveInput.magnitude);
 		_anim.SetBool("onGround", _canJump);
