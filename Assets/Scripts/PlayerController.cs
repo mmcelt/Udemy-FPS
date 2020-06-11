@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
 		if (_canJump)
 		{
-			_canDoubleJump = true;
+			_canDoubleJump = true;	//CHANGED FROM FALSE TO TRUE
 		}
 
 		//handle jumping
