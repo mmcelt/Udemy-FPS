@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
 	public bool _invertX, _invertY;
 
 	Vector3 _moveInput;
-	bool canJump, canDoubleJump;
+	bool _canJump, _canDoubleJump;
+
+	Animator _anim;
 
 	#endregion
 
@@ -23,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
 	void Start() 
 	{
-		
+		_anim = GetComponent<Animator>();
 	}
 	
 	void Update() 
@@ -60,23 +62,23 @@ public class PlayerController : MonoBehaviour
 			_moveInput.y = Physics.gravity.y * Time.deltaTime* _gravityModifier;
 		}
 
-		canJump = Physics.OverlapSphere(_groundCheckPoint.position, 0.25f, _whatIsGround).Length > 0;
+		_canJump = Physics.OverlapSphere(_groundCheckPoint.position, 0.25f, _whatIsGround).Length > 0;
 
-		if (canJump)
+		if (_canJump)
 		{
-			canDoubleJump = true;
+			_canDoubleJump = true;
 		}
 
 		//handle jumping
-		if (Input.GetKeyDown(KeyCode.Space) && canJump)
+		if (Input.GetKeyDown(KeyCode.Space) && _canJump)
 		{
 			//_canDoubleJump = true;
 			_moveInput.y = _jumpPower;
 		}
-		else if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump)
+		else if (Input.GetKeyDown(KeyCode.Space) && _canDoubleJump)
 		{
 			_moveInput.y = _jumpPower;
-			canDoubleJump = false;
+			_canDoubleJump = false;
 		}
 
 		_controller.Move(_moveInput * Time.deltaTime);
@@ -97,6 +99,8 @@ public class PlayerController : MonoBehaviour
 
 		_theCamera.rotation = Quaternion.Euler(_theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
+		_anim.SetFloat("moveSpeed", _moveInput.magnitude);
+		_anim.SetBool("onGround", _canJump);
 	}
 	#endregion
 
