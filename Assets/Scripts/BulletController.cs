@@ -27,6 +27,11 @@ public class BulletController : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (other.CompareTag("Enemy"))
+		{
+			Destroy(other.gameObject);
+		}
+
 		Destroy(gameObject);
 		//move the instantiation position back 1 frame in position
 		Instantiate(_impactEffect, transform.position + (transform.forward * (-_moveSpeed * Time.deltaTime)), transform.rotation);
