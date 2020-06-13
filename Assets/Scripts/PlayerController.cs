@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 	#region Fields
 
+	public static PlayerController Instance;
+
 	[SerializeField] float _moveSpeed, _gravityModifier, _jumpPower, _runSpeed = 12f;
 	[SerializeField] CharacterController _controller;
 	[SerializeField] Transform _theCamera, _groundCheckPoint;
@@ -26,6 +28,16 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region MonoBehaviour Methods
+
+	void Awake()
+	{
+		if (Instance == null)
+			Instance = this;
+		else if (Instance != this)
+			Destroy(gameObject);
+
+		DontDestroyOnLoad(gameObject);
+	}
 
 	void Start() 
 	{
