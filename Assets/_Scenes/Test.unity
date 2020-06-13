@@ -2407,6 +2407,16 @@ PrefabInstance:
       propertyPath: _theRB
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3554824186108224098, guid: 8273b9b426fdd41409ef2360a6fedde2,
+        type: 3}
+      propertyPath: _moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554824186108224098, guid: 8273b9b426fdd41409ef2360a6fedde2,
+        type: 3}
+      propertyPath: _keepChasingTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3554824186108224108, guid: 8273b9b426fdd41409ef2360a6fedde2,
         type: 3}
       propertyPath: m_Name
