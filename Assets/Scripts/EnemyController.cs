@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EnemyController : MonoBehaviour
 
 	[SerializeField] float _moveSpeed;
 	[SerializeField] Rigidbody _theRB;
+	[SerializeField] NavMeshAgent _theAgent;
 	[SerializeField] float _distanceToChase = 10f, _distanceToLose = 15f;
 
 	bool _chasing;
@@ -36,8 +38,9 @@ public class EnemyController : MonoBehaviour
 		}
 		else
 		{
-			transform.LookAt(_targetPoint);
-			_theRB.velocity = transform.forward * _moveSpeed;
+			//transform.LookAt(_targetPoint);
+			//_theRB.velocity = transform.forward * _moveSpeed;
+			_theAgent.destination = _targetPoint;
 
 			if(Vector3.Distance(transform.position, _targetPoint) >= _distanceToLose)
 			{
