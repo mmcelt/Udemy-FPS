@@ -10,6 +10,7 @@ public class BulletController : MonoBehaviour
 	[SerializeField] float _moveSpeed, _lifetime;
 	[SerializeField] Rigidbody _theRB;
 	[SerializeField] GameObject _impactEffect;
+	[SerializeField] int _bulletDamage = 1;
 
 	#endregion
 
@@ -29,7 +30,8 @@ public class BulletController : MonoBehaviour
 	{
 		if (other.CompareTag("Enemy"))
 		{
-			Destroy(other.gameObject);
+			//Destroy(other.gameObject);
+			other.GetComponent<EnemyHealthController>().DamageEnemy(_bulletDamage);
 		}
 
 		Destroy(gameObject);
