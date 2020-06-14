@@ -12,9 +12,9 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] float _keepChasingTime = 5f;
 	[SerializeField] GameObject _bulletPrefab;
 	[SerializeField] Transform _firePoint;
-	[SerializeField] float _fireRate;
+	[SerializeField] float _fireRate, _waitBetweenShots = 2f, _timeToShoot = 1f;
 
-	float _fireCounter;
+	float _fireCounter, _shotWaitCounter, _shootTimeCounter;
 
 	bool _chasing;
 	Vector3 _targetPoint, _startPoint;
@@ -27,6 +27,8 @@ public class EnemyController : MonoBehaviour
 	void Start() 
 	{
 		_startPoint = transform.position;
+		_shootTimeCounter = _timeToShoot;
+		_shotWaitCounter = _waitBetweenShots;
 	}
 	
 	void Update() 
@@ -39,10 +41,11 @@ public class EnemyController : MonoBehaviour
 			if(Vector3.Distance(transform.position, _targetPoint) < _distanceToChase)
 			{
 				_chasing = true;
-				_fireCounter = 1f;
+				_shootTimeCounter = _timeToShoot;
+				_shotWaitCounter = _waitBetweenShots;
 			}
 
-			if(_chaseCounter > 0)
+			if (_chaseCounter > 0)
 			{
 				_chaseCounter -= Time.deltaTime;
 
@@ -76,13 +79,36 @@ public class EnemyController : MonoBehaviour
 
 			}
 
-			_fireCounter -= Time.deltaTime;
-
-			if (_fireCounter <= 0)
+			if (_shotWaitCounter > 0)
 			{
-				_fireCounter = _fireRate;
+				_shotWaitCounter -= Time.deltaTime;
 
-				Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+				if (_shotWaitCounter <= 0)
+				{
+					_shootTimeCounter = _timeToShoot;
+				}
+			}
+			else
+			{
+				_shootTimeCounter -= Time.deltaTime;
+
+				if (_shootTimeCounter > 0)
+				{
+					_fireCounter -= Time.deltaTime;
+
+					if (_fireCounter <= 0)
+					{
+						_fireCounter = _fireRate;
+
+						Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+					}
+					//stop & shoot...
+					_theAgent.destination = transform.position;
+				}
+				else
+				{
+					_shotWaitCounter = _waitBetweenShots;
+				}
 			}
 		}
 	}
