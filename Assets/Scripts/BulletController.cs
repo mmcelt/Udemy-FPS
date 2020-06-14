@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class BulletController : MonoBehaviour
 {
@@ -31,8 +32,16 @@ public class BulletController : MonoBehaviour
 	{
 		if (other.CompareTag("Enemy") && _damageEnemy)
 		{
-			//Destroy(other.gameObject);
-			other.GetComponent<EnemyHealthController>().DamageEnemy(_bulletDamage);
+			//check for Head Shot...
+			if(other.gameObject.name == "Head Shot")
+			{
+				other.GetComponentInParent<EnemyHealthController>().DamageEnemy(_bulletDamage * 2);
+				Debug.Log("Head Shot!");
+			}
+			else
+			{
+				other.GetComponent<EnemyHealthController>().DamageEnemy(_bulletDamage);
+			}
 		}
 		if (other.CompareTag("Player") && _damagePlayer)
 		{
