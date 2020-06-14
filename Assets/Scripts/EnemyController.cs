@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 	#region Fields
 
 	[SerializeField] NavMeshAgent _theAgent;
+	[SerializeField] Animator _theAnim;
+
 	[SerializeField] float _distanceToChase = 10f, _distanceToLose = 15f, _distanceToStop = 2f;
 	[SerializeField] float _keepChasingTime = 5f;
 	[SerializeField] GameObject _bulletPrefab;
@@ -54,6 +56,16 @@ public class EnemyController : MonoBehaviour
 					_theAgent.destination = _startPoint;
 				}
 			}
+
+			//check if stopping...
+			if (_theAgent.remainingDistance < 0.25f)
+			{
+				_theAnim.SetBool("isMoving", false);
+			}
+			else
+			{
+				_theAnim.SetBool("isMoving", true);
+			}
 		}
 		else
 		{
@@ -76,9 +88,9 @@ public class EnemyController : MonoBehaviour
 				_chasing = false;
 
 				_chaseCounter = _keepChasingTime;
-
 			}
 
+			//moving & waiting to shoot...
 			if (_shotWaitCounter > 0)
 			{
 				_shotWaitCounter -= Time.deltaTime;
@@ -87,6 +99,8 @@ public class EnemyController : MonoBehaviour
 				{
 					_shootTimeCounter = _timeToShoot;
 				}
+
+				_theAnim.SetBool("isMoving", true);
 			}
 			else
 			{
@@ -107,6 +121,7 @@ public class EnemyController : MonoBehaviour
 						float angle = Vector3.SignedAngle(targetDirection, transform.forward, Vector3.up);
 						if (Mathf.Abs(angle) < 30f)
 						{
+							_theAnim.SetTrigger("fireShot");
 							Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 						}
 						else
@@ -121,6 +136,8 @@ public class EnemyController : MonoBehaviour
 				{
 					_shotWaitCounter = _waitBetweenShots;
 				}
+
+				_theAnim.SetBool("isMoving", false);
 			}
 		}
 	}
