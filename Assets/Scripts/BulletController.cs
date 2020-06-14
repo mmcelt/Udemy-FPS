@@ -11,6 +11,7 @@ public class BulletController : MonoBehaviour
 	[SerializeField] Rigidbody _theRB;
 	[SerializeField] GameObject _impactEffect;
 	[SerializeField] int _bulletDamage = 1;
+	[SerializeField] bool _damageEnemy, _damagePlayer;
 
 	#endregion
 
@@ -28,10 +29,14 @@ public class BulletController : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Enemy"))
+		if (other.CompareTag("Enemy") && _damageEnemy)
 		{
 			//Destroy(other.gameObject);
 			other.GetComponent<EnemyHealthController>().DamageEnemy(_bulletDamage);
+		}
+		if (other.CompareTag("Player") && _damagePlayer)
+		{
+			Debug.Log("PLAYER HIT AT " + transform.position);
 		}
 
 		Destroy(gameObject);
