@@ -100,7 +100,19 @@ public class EnemyController : MonoBehaviour
 					{
 						_fireCounter = _fireRate;
 
-						Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+						_firePoint.LookAt(PlayerController.Instance.transform.position + new Vector3(0f, 1.2f, 0f));
+
+						//check the angle to the player
+						Vector3 targetDirection = PlayerController.Instance.transform.position - transform.position;
+						float angle = Vector3.SignedAngle(targetDirection, transform.forward, Vector3.up);
+						if (Mathf.Abs(angle) < 30f)
+						{
+							Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+						}
+						else
+						{
+							_shotWaitCounter = _waitBetweenShots;
+						}
 					}
 					//stop & shoot...
 					_theAgent.destination = transform.position;
