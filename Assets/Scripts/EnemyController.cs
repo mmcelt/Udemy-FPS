@@ -7,11 +7,14 @@ public class EnemyController : MonoBehaviour
 {
 	#region Fields
 
-	[SerializeField] float _moveSpeed;
-	[SerializeField] Rigidbody _theRB;
 	[SerializeField] NavMeshAgent _theAgent;
 	[SerializeField] float _distanceToChase = 10f, _distanceToLose = 15f, _distanceToStop = 2f;
 	[SerializeField] float _keepChasingTime = 5f;
+	[SerializeField] GameObject _bulletPrefab;
+	[SerializeField] Transform _firePoint;
+	[SerializeField] float _fireRate;
+
+	float _fireCounter;
 
 	bool _chasing;
 	Vector3 _targetPoint, _startPoint;
@@ -23,7 +26,6 @@ public class EnemyController : MonoBehaviour
 
 	void Start() 
 	{
-		_theAgent.speed = _moveSpeed;
 		_startPoint = transform.position;
 	}
 	
@@ -37,6 +39,7 @@ public class EnemyController : MonoBehaviour
 			if(Vector3.Distance(transform.position, _targetPoint) < _distanceToChase)
 			{
 				_chasing = true;
+				_fireCounter = 1f;
 			}
 
 			if(_chaseCounter > 0)
@@ -51,6 +54,8 @@ public class EnemyController : MonoBehaviour
 		}
 		else
 		{
+			//CHASING THE PLAYER...
+
 			//transform.LookAt(_targetPoint);
 			//_theRB.velocity = transform.forward * _moveSpeed;
 			if(Vector3.Distance(transform.position, _targetPoint) > _distanceToStop)
@@ -69,6 +74,15 @@ public class EnemyController : MonoBehaviour
 
 				_chaseCounter = _keepChasingTime;
 
+			}
+
+			_fireCounter -= Time.deltaTime;
+
+			if (_fireCounter <= 0)
+			{
+				_fireCounter = _fireRate;
+
+				Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 			}
 		}
 	}

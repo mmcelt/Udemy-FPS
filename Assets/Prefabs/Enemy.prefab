@@ -218,10 +218,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -255,10 +255,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639ec796cc125d74495636d04e14209d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _theRB: {fileID: 0}
   _theAgent: {fileID: 3554824186108224100}
   _distanceToChase: 10
   _distanceToLose: 15
   _distanceToStop: 2
   _keepChasingTime: 5
+  _bulletPrefab: {fileID: 4656231172036743432, guid: a4c204ef65ee0d64888d766b19cebe0e,
+    type: 3}
+  _firePoint: {fileID: 394544325}
+  _fireRate: 1
