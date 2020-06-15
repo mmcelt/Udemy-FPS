@@ -30,6 +30,7 @@ public class PlayerHealthController : MonoBehaviour
 	void Start() 
 	{
 		_currentHealth = _maxHealth;
+		UpdateHealthInfo();
 	}
 	
 	void Update() 
@@ -48,6 +49,8 @@ public class PlayerHealthController : MonoBehaviour
 			_currentHealth -= damageAmount;
 			_currentHealth = Mathf.Max(0, _currentHealth);
 
+			UpdateHealthInfo();
+
 			if (_currentHealth == 0)
 			{
 				gameObject.SetActive(false);
@@ -60,6 +63,11 @@ public class PlayerHealthController : MonoBehaviour
 
 	#region Private Methods
 
-
+	void UpdateHealthInfo()
+	{
+		UIController.Instance._healthSlider.maxValue = _maxHealth;
+		UIController.Instance._healthSlider.value = _currentHealth;
+		UIController.Instance._healthText.text = "HEALTH: " + _currentHealth + "/" + _maxHealth;
+	}
 	#endregion
 }
