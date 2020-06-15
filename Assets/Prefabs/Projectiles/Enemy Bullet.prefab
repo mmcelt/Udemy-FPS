@@ -235,6 +235,6 @@ MonoBehaviour:
   _theRB: {fileID: 4656231172036743438}
   _impactEffect: {fileID: 6449132416546510728, guid: 3f66b77677da0fe4691fb04081446252,
     type: 3}
-  _bulletDamage: 1
+  _bulletDamage: 10
   _damageEnemy: 0
   _damagePlayer: 1

@@ -45,7 +45,7 @@ public class BulletController : MonoBehaviour
 		}
 		if (other.CompareTag("Player") && _damagePlayer)
 		{
-			Debug.Log("PLAYER HIT AT " + transform.position);
+			PlayerHealthController.Instance.DamagePlayer(_bulletDamage);
 		}
 
 		Destroy(gameObject);
