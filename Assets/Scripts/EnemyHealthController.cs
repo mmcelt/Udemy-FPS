@@ -16,11 +16,6 @@ public class EnemyHealthController : MonoBehaviour
 	{
 		
 	}
-	
-	void Update() 
-	{
-		
-	}
 	#endregion
 
 	#region Public Methods

@@ -26,21 +26,23 @@ public class EnemyController : MonoBehaviour
 
 	#region MonoBehaviour Methods
 
-	void Start() 
+	void Start()
 	{
 		_startPoint = transform.position;
 		_shootTimeCounter = _timeToShoot;
 		_shotWaitCounter = _waitBetweenShots;
 	}
-	
-	void Update() 
+
+	void Update()
 	{
+		if (!PlayerController.Instance.gameObject.activeInHierarchy) return;
+
 		_targetPoint = PlayerController.Instance.transform.position;
 		_targetPoint.y = transform.position.y;
 
 		if (!_chasing)
 		{
-			if(Vector3.Distance(transform.position, _targetPoint) < _distanceToChase)
+			if (Vector3.Distance(transform.position, _targetPoint) < _distanceToChase)
 			{
 				_chasing = true;
 				_shootTimeCounter = _timeToShoot;
@@ -73,7 +75,7 @@ public class EnemyController : MonoBehaviour
 
 			//transform.LookAt(_targetPoint);
 			//_theRB.velocity = transform.forward * _moveSpeed;
-			if(Vector3.Distance(transform.position, _targetPoint) > _distanceToStop)
+			if (Vector3.Distance(transform.position, _targetPoint) > _distanceToStop)
 			{
 				_theAgent.destination = _targetPoint;
 			}
@@ -119,6 +121,7 @@ public class EnemyController : MonoBehaviour
 						//check the angle to the player
 						Vector3 targetDirection = PlayerController.Instance.transform.position - transform.position;
 						float angle = Vector3.SignedAngle(targetDirection, transform.forward, Vector3.up);
+
 						if (Mathf.Abs(angle) < 30f)
 						{
 							_theAnim.SetTrigger("fireShot");
@@ -137,7 +140,11 @@ public class EnemyController : MonoBehaviour
 					_shotWaitCounter = _waitBetweenShots;
 				}
 
+
+				//_theAgent.destination = transform.position;
+				//_theAnim.SetBool("isMoving", false);
 				_theAnim.SetBool("isMoving", false);
+
 			}
 		}
 	}
