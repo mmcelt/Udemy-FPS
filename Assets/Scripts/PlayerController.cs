@@ -17,8 +17,9 @@ public class PlayerController : MonoBehaviour
 	public bool _invertX, _invertY;
 
 	[Header("Shooting")]
-	[SerializeField] GameObject _bulletPrefab;
-	[SerializeField] Transform _firePoint;
+	//[SerializeField] GameObject _bulletPrefab;
+	//[SerializeField] Transform _firePoint;
+	[SerializeField] Gun _activeGun;
 
 	Vector3 _moveInput;
 	bool _canJump, _canDoubleJump;
@@ -123,13 +124,14 @@ public class PlayerController : MonoBehaviour
 			if (Physics.Raycast(_theCamera.position, _theCamera.forward, out hit, 50f, _shootingRayLayers))
 			{
 				if(Vector3.Distance(_theCamera.position,hit.point) > 2f)
-					_firePoint.LookAt(hit.point);
+					_activeGun._firePoint.LookAt(hit.point);
 			}
 			else
 			{
-				_firePoint.LookAt(_theCamera.position + (_theCamera.forward * 50f));
+				_activeGun._firePoint.LookAt(_theCamera.position + (_theCamera.forward * 50f));
 			}
-			Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+			//Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+			FireShot();
 		}
 
 		_anim.SetFloat("moveSpeed", _moveInput.magnitude);
@@ -144,6 +146,9 @@ public class PlayerController : MonoBehaviour
 
 	#region Private Methods
 
-
+	void FireShot()
+	{
+		Instantiate(_activeGun._bullet, _activeGun._firePoint.position, _activeGun._firePoint.rotation);
+	}
 	#endregion
 }
