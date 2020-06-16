@@ -8,6 +8,9 @@ public class Gun : MonoBehaviour
 
 	public GameObject _bullet;
 	public Transform _firePoint;
+	public bool _canAutoFire;
+	public float _fireRate;
+	[HideInInspector] public float _fireCounter;
 
 	#endregion
 
@@ -20,7 +23,8 @@ public class Gun : MonoBehaviour
 	
 	void Update() 
 	{
-		
+		if (_fireCounter > 0)
+			_fireCounter -= Time.deltaTime;
 	}
 	#endregion
 

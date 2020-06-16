@@ -134,6 +134,12 @@ public class PlayerController : MonoBehaviour
 			FireShot();
 		}
 
+		if (Input.GetMouseButton(0) && _activeGun._canAutoFire)
+		{
+			if (_activeGun._fireCounter <= 0)
+				FireShot();
+		}
+
 		_anim.SetFloat("moveSpeed", _moveInput.magnitude);
 		_anim.SetBool("onGround", _canJump);
 	}
@@ -149,6 +155,9 @@ public class PlayerController : MonoBehaviour
 	void FireShot()
 	{
 		Instantiate(_activeGun._bullet, _activeGun._firePoint.position, _activeGun._firePoint.rotation);
+
+		_activeGun._fireCounter = _activeGun._fireRate;
+
 	}
 	#endregion
 }

@@ -1580,6 +1580,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 4656231172036743432, guid: 0880d423bdcaeb244b42f058a260f1b7, type: 3}
   _firePoint: {fileID: 622469749}
+  _canAutoFire: 1
+  _fireRate: 0.3
+  _fireCounter: 0
 --- !u!1 &983859950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,9 +2765,6 @@ MonoBehaviour:
     m_Bits: 823
   _invertX: 0
   _invertY: 0
-  _bulletPrefab: {fileID: 4656231172036743432, guid: 0880d423bdcaeb244b42f058a260f1b7,
-    type: 3}
-  _firePoint: {fileID: 622469749}
   _activeGun: {fileID: 875004403}
 --- !u!143 &1755865401
 CharacterController:
