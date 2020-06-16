@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 	void Start() 
 	{
 		_anim = GetComponent<Animator>();
+		UpdateAmmoInfo();
 	}
 	
 	void Update() 
@@ -154,10 +155,21 @@ public class PlayerController : MonoBehaviour
 
 	void FireShot()
 	{
-		Instantiate(_activeGun._bullet, _activeGun._firePoint.position, _activeGun._firePoint.rotation);
+		if(_activeGun._currentAmmo > 0)
+		{
+			_activeGun._currentAmmo--;
 
-		_activeGun._fireCounter = _activeGun._fireRate;
+			UpdateAmmoInfo();
 
+			Instantiate(_activeGun._bullet, _activeGun._firePoint.position, _activeGun._firePoint.rotation);
+
+			_activeGun._fireCounter = _activeGun._fireRate;
+		}
+	}
+
+	void UpdateAmmoInfo()
+	{
+		UIController.Instance._ammoText.text = "AMMO: " + _activeGun._currentAmmo;
 	}
 	#endregion
 }

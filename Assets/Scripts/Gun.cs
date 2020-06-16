@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
 	public bool _canAutoFire;
 	public float _fireRate;
 	[HideInInspector] public float _fireCounter;
+	public int _currentAmmo;
 
 	#endregion
 

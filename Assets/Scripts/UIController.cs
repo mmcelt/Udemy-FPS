@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
 	public static UIController Instance;
 
 	public Slider _healthSlider;
-	public Text _healthText;
+	public Text _healthText, _ammoText;
 
 	#endregion
 
