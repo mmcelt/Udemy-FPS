@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 	//[SerializeField] GameObject _bulletPrefab;
 	//[SerializeField] Transform _firePoint;
 	public Gun _activeGun;
+	public List<Gun> _allGuns = new List<Gun>();
+	[SerializeField] int _currentGun;
 
 	Vector3 _moveInput;
 	bool _canJump, _canDoubleJump;
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
 	void Start() 
 	{
+		_activeGun = _allGuns[_currentGun];
+		_activeGun.gameObject.SetActive(true);
 		_anim = GetComponent<Animator>();
 		UpdateAmmoUI();
 	}
@@ -141,6 +145,9 @@ public class PlayerController : MonoBehaviour
 				FireShot();
 		}
 
+		if (Input.GetKeyDown(KeyCode.Tab))
+			SwitchGun();
+
 		_anim.SetFloat("moveSpeed", _moveInput.magnitude);
 		_anim.SetBool("onGround", _canJump);
 	}
@@ -170,6 +177,18 @@ public class PlayerController : MonoBehaviour
 	void UpdateAmmoUI()
 	{
 		UIController.Instance._ammoText.text = "AMMO: " + _activeGun._currentAmmo;
+	}
+
+	void SwitchGun()
+	{
+		_activeGun.gameObject.SetActive(false);
+		_currentGun++;
+
+		_currentGun = ( _currentGun >= _allGuns.Count) ? 0 : _currentGun;
+
+		_activeGun = _allGuns[_currentGun];
+		_activeGun.gameObject.SetActive(true);
+		UpdateAmmoUI();
 	}
 	#endregion
 }

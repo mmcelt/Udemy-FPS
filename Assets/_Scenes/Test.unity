@@ -1974,7 +1974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &875004402
 Transform:
   m_ObjectHideFlags: 0
@@ -3253,6 +3253,11 @@ MonoBehaviour:
   _invertX: 0
   _invertY: 0
   _activeGun: {fileID: 875004403}
+  _allGuns:
+  - {fileID: 875004403}
+  - {fileID: 909750765}
+  - {fileID: 209867569}
+  _currentGun: 0
 --- !u!143 &1755865401
 CharacterController:
   m_ObjectHideFlags: 0
