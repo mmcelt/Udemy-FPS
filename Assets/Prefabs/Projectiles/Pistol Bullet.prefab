@@ -131,7 +131,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0aad3b18e9c4c4643bfbff8594e70074, type: 2}
+  - {fileID: 2100000, guid: 00db10c3316a5c2458882fe22e9b23c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,8 +233,8 @@ MonoBehaviour:
   _moveSpeed: 30
   _lifetime: 5
   _theRB: {fileID: 4656231172036743438}
-  _impactEffect: {fileID: 6449132416546510728, guid: 316abfcab3354c848a759e95d6155eec,
+  _impactEffect: {fileID: 6449132416546510728, guid: c7a5e3c9f7460b44da7876a20ed16f7e,
     type: 3}
-  _bulletDamage: 1
+  _bulletDamage: 3
   _damageEnemy: 1
   _damagePlayer: 0
