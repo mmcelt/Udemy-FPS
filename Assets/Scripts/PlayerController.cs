@@ -117,8 +117,8 @@ public class PlayerController : MonoBehaviour
 		_theCamera.rotation = Quaternion.Euler(_theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
 
-		//shooting
-		if (Input.GetMouseButtonDown(0))
+		//shooting - single shot...
+		if (Input.GetMouseButtonDown(0) && _activeGun._fireCounter <= 0)
 		{
 			RaycastHit hit;
 			if (Physics.Raycast(_theCamera.position, _theCamera.forward, out hit, 50f, _shootingRayLayers))
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 			//Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 			FireShot();
 		}
-
+		//auto fire...
 		if (Input.GetMouseButton(0) && _activeGun._canAutoFire)
 		{
 			if (_activeGun._fireCounter <= 0)
