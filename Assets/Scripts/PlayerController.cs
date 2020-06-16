@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 	[Header("Shooting")]
 	//[SerializeField] GameObject _bulletPrefab;
 	//[SerializeField] Transform _firePoint;
-	[SerializeField] Gun _activeGun;
+	public Gun _activeGun;
 
 	Vector3 _moveInput;
 	bool _canJump, _canDoubleJump;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 	void Start() 
 	{
 		_anim = GetComponent<Animator>();
-		UpdateAmmoInfo();
+		UpdateAmmoUI();
 	}
 	
 	void Update() 
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
 		{
 			_activeGun._currentAmmo--;
 
-			UpdateAmmoInfo();
+			UpdateAmmoUI();
 
 			Instantiate(_activeGun._bullet, _activeGun._firePoint.position, _activeGun._firePoint.rotation);
 
@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void UpdateAmmoInfo()
+	void UpdateAmmoUI()
 	{
 		UIController.Instance._ammoText.text = "AMMO: " + _activeGun._currentAmmo;
 	}

@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
 	public bool _canAutoFire;
 	public float _fireRate;
 	[HideInInspector] public float _fireCounter;
-	public int _currentAmmo;
+	public int _currentAmmo, _pickupAmount;
 
 	#endregion
 
@@ -31,11 +31,18 @@ public class Gun : MonoBehaviour
 
 	#region Public Methods
 
-
+	public void GetAmmo()
+	{
+		_currentAmmo += _pickupAmount;
+		UpdateAmmoUI();
+	}
 	#endregion
 
 	#region Private Methods
 
-
+	void UpdateAmmoUI()
+	{
+		UIController.Instance._ammoText.text = "AMMO: " + _currentAmmo;
+	}
 	#endregion
 }

@@ -30,7 +30,7 @@ public class PlayerHealthController : MonoBehaviour
 	void Start() 
 	{
 		_currentHealth = _maxHealth;
-		UpdateHealthInfo();
+		UpdateHealthUI();
 	}
 	
 	void Update() 
@@ -49,7 +49,7 @@ public class PlayerHealthController : MonoBehaviour
 			_currentHealth -= damageAmount;
 			_currentHealth = Mathf.Max(0, _currentHealth);
 
-			UpdateHealthInfo();
+			UpdateHealthUI();
 
 			if (_currentHealth == 0)
 			{
@@ -65,13 +65,13 @@ public class PlayerHealthController : MonoBehaviour
 		_currentHealth += healAmount;
 		_currentHealth = Mathf.Min(_currentHealth, _maxHealth);
 
-		UpdateHealthInfo();
+		UpdateHealthUI();
 	}
 	#endregion
 
 	#region Private Methods
 
-	void UpdateHealthInfo()
+	void UpdateHealthUI()
 	{
 		UIController.Instance._healthSlider.maxValue = _maxHealth;
 		UIController.Instance._healthSlider.value = _currentHealth;

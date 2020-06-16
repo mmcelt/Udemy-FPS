@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
+public class AmmoPickup : MonoBehaviour
 {
 	#region Fields
-
-	[SerializeField] int _healAmount;
 
 	bool _collected;
 
@@ -20,7 +18,7 @@ public class HealthPickup : MonoBehaviour
 		{
 			_collected = true;
 
-			PlayerHealthController.Instance.HealPlayer(_healAmount);
+			PlayerController.Instance._activeGun.GetAmmo();
 
 			Destroy(gameObject);
 		}
