@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] CharacterController _controller;
 	[SerializeField] Transform _theCamera, _groundCheckPoint;
 	[SerializeField] float _mouseSensitivity;
-	[SerializeField] LayerMask _whatIsGround;
+	[SerializeField] LayerMask _whatIsGround, _shootingRayLayers;
 
 	public bool _invertX, _invertY;
 
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			RaycastHit hit;
-			if (Physics.Raycast(_theCamera.position, _theCamera.forward, out hit, 50f))
+			if (Physics.Raycast(_theCamera.position, _theCamera.forward, out hit, 50f, _shootingRayLayers))
 			{
 				if(Vector3.Distance(_theCamera.position,hit.point) > 2f)
 					_firePoint.LookAt(hit.point);
