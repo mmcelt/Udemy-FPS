@@ -59,6 +59,14 @@ public class PlayerHealthController : MonoBehaviour
 			_invincibleCounter = _invincibleLength;
 		}
 	}
+
+	public void HealPlayer(int healAmount)
+	{
+		_currentHealth += healAmount;
+		_currentHealth = Mathf.Min(_currentHealth, _maxHealth);
+
+		UpdateHealthInfo();
+	}
 	#endregion
 
 	#region Private Methods
