@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour
 
 	void Start() 
 	{
-		_activeGun = _allGuns[_currentGun];
-		_activeGun.gameObject.SetActive(true);
 		_anim = GetComponent<Animator>();
-		UpdateAmmoUI();
+
+		_currentGun--;
+		SwitchGun();
 	}
 	
 	void Update() 
