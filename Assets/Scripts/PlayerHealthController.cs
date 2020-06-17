@@ -49,6 +49,8 @@ public class PlayerHealthController : MonoBehaviour
 			_currentHealth -= damageAmount;
 			_currentHealth = Mathf.Max(0, _currentHealth);
 
+			UIController.Instance.ShowDamage();
+
 			UpdateHealthUI();
 
 			if (_currentHealth == 0)

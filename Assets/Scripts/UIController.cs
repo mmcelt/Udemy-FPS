@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
 
 	public Slider _healthSlider;
 	public Text _healthText, _ammoText;
+	public Image _damagEffect;
+	public float _damageAlpha = 0.25f, _damageFadeSpeed = 2f;
 
 	#endregion
 
@@ -26,15 +28,22 @@ public class UIController : MonoBehaviour
 		//DontDestroyOnLoad(gameObject);
 	}
 
-	void Start() 
+	void Update()
 	{
-		
+		if (_damagEffect.color.a != 0)
+		{
+			_damagEffect.color = new Color(_damagEffect.color.r, _damagEffect.color.g, _damagEffect.color.b, Mathf.MoveTowards(_damagEffect.color.a, 0f, _damageFadeSpeed * Time.deltaTime));
+		}
 	}
 	#endregion
 
 	#region Public Methods
 
+	public void ShowDamage()
+	{
+		_damagEffect.color = new Color(_damagEffect.color.r, _damagEffect.color.g, _damagEffect.color.b, _damageAlpha);
 
+	}
 	#endregion
 
 	#region Private Methods
