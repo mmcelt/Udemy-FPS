@@ -2199,7 +2199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1206302895}
   - component: {fileID: 1206302896}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Post Process Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2233,7 +2233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: 11873356fa7864842bfc44da0e3aa080, type: 2}
-  isGlobal: 0
+  isGlobal: 1
   blendDistance: 0
   weight: 1
   priority: 0
