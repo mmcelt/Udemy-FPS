@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 	//[SerializeField] Transform _firePoint;
 	public Gun _activeGun;
 	public List<Gun> _allGuns = new List<Gun>();
+	public List<Gun> _unlockableGuns = new List<Gun>();
+
 	[SerializeField] int _currentGun;
 
 	Vector3 _moveInput;
@@ -181,7 +183,30 @@ public class PlayerController : MonoBehaviour
 
 	#region Public Methods
 
+	public void AddGun(string gunToAdd)
+	{
+		bool gunUnlocked = false;
 
+		if (_unlockableGuns.Count > 0)
+		{
+			for (int i=0; i<_unlockableGuns.Count; i++)
+			{
+				if (_unlockableGuns[i]._gunName == gunToAdd)
+				{
+					gunUnlocked = true;
+					_allGuns.Add(_unlockableGuns[i]);
+					_unlockableGuns.RemoveAt(i);
+					i = _unlockableGuns.Count;
+				}
+			}
+		}
+
+		if (gunUnlocked)
+		{
+			_currentGun = _allGuns.Count - 2;
+			SwitchGun();
+		}
+	}
 	#endregion
 
 	#region Private Methods
