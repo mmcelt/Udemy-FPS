@@ -29,11 +29,6 @@ public class GameManager : MonoBehaviour
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 	}
-	
-	void Update() 
-	{
-		
-	}
 	#endregion
 
 	#region Public Methods
