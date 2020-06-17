@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
 	public bool _invertX, _invertY;
 
 	[Header("Shooting")]
+	[SerializeField] Transform _adsPoint;
+	[SerializeField] Transform _gunHolder;
+	[SerializeField] float _adsSpeed = 2f;
+
 	//[SerializeField] GameObject _bulletPrefab;
 	//[SerializeField] Transform _firePoint;
 	public Gun _activeGun;
@@ -24,6 +28,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] int _currentGun;
 
 	Vector3 _moveInput;
+	Vector3 _gunStartPos;
 	bool _canJump, _canDoubleJump;
 
 	Animator _anim;
@@ -45,7 +50,7 @@ public class PlayerController : MonoBehaviour
 	void Start() 
 	{
 		_anim = GetComponent<Animator>();
-
+		_gunStartPos = _gunHolder.localPosition;
 		_currentGun--;
 		SwitchGun();
 	}
@@ -144,15 +149,26 @@ public class PlayerController : MonoBehaviour
 			if (_activeGun._fireCounter <= 0)
 				FireShot();
 		}
+
 		//switch gun...
 		if (Input.GetKeyDown(KeyCode.Tab))
 			SwitchGun();
-		//zoom in...
+
+		//Aiming - zoom in...
 		if (Input.GetMouseButtonDown(1))
 		{
 			CameraController.Instance.ZoomIn(_activeGun._zoomAmount);
 		}
-		//zoom out...
+		//center the gun
+		if (Input.GetMouseButton(1))
+		{
+			_gunHolder.position = Vector3.MoveTowards(_gunHolder.position, _adsPoint.position, _adsSpeed * Time.deltaTime);
+		}
+		else
+		{
+			_gunHolder.localPosition = Vector3.MoveTowards(_gunHolder.localPosition, _gunStartPos, _adsSpeed * Time.deltaTime);
+		}
+		//Aiming - zoom out...
 		if (Input.GetMouseButtonUp(1))
 		{
 			CameraController.Instance.ZoomOut();
