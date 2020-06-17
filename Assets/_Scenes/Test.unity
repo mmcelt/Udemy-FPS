@@ -807,6 +807,7 @@ MonoBehaviour:
   _fireCounter: 0
   _currentAmmo: 15
   _pickupAmount: 5
+  _zoomAmount: 15
 --- !u!1 &276516871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,6 +2011,7 @@ MonoBehaviour:
   _fireCounter: 0
   _currentAmmo: 48
   _pickupAmount: 16
+  _zoomAmount: 50
 --- !u!1 &909750764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,6 +2048,7 @@ MonoBehaviour:
   _fireCounter: 0
   _currentAmmo: 96
   _pickupAmount: 32
+  _zoomAmount: 40
 --- !u!4 &909750766
 Transform:
   m_ObjectHideFlags: 0
@@ -2617,6 +2620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 1401427198}
+  _zoomSpeed: 5
+  _theCamera: {fileID: 1269194712}
 --- !u!1 &1289885899
 GameObject:
   m_ObjectHideFlags: 0

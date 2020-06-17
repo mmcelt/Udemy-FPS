@@ -144,9 +144,19 @@ public class PlayerController : MonoBehaviour
 			if (_activeGun._fireCounter <= 0)
 				FireShot();
 		}
-
+		//switch gun...
 		if (Input.GetKeyDown(KeyCode.Tab))
 			SwitchGun();
+		//zoom in...
+		if (Input.GetMouseButtonDown(1))
+		{
+			CameraController.Instance.ZoomIn(_activeGun._zoomAmount);
+		}
+		//zoom out...
+		if (Input.GetMouseButtonUp(1))
+		{
+			CameraController.Instance.ZoomOut();
+		}
 
 		_anim.SetFloat("moveSpeed", _moveInput.magnitude);
 		_anim.SetBool("onGround", _canJump);

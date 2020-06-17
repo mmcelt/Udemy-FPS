@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
 	public float _fireRate;
 	[HideInInspector] public float _fireCounter;
 	public int _currentAmmo, _pickupAmount;
+	public float _zoomAmount;
 
 	#endregion
 
