@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
 	#region Fields
 
 	public string _gunName;
-	public GameObject _bullet;
+	public GameObject _bullet, _muzzleFlash;
 	public Transform _firePoint;
 	public bool _canAutoFire;
 	public float _fireRate;

@@ -128,6 +128,8 @@ public class PlayerController : MonoBehaviour
 
 		_theCamera.rotation = Quaternion.Euler(_theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
+		//if (_activeGun._muzzleFlash.activeInHierarchy)
+		//	_activeGun._muzzleFlash.SetActive(false);
 
 		//shooting - single shot...
 		if (Input.GetMouseButtonDown(0) && _activeGun._fireCounter <= 0)
@@ -143,13 +145,13 @@ public class PlayerController : MonoBehaviour
 				_activeGun._firePoint.LookAt(_theCamera.position + (_theCamera.forward * 50f));
 			}
 			//Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-			FireShot();
+			StartCoroutine(FireShot());
 		}
 		//auto fire...
 		if (Input.GetMouseButton(0) && _activeGun._canAutoFire)
 		{
 			if (_activeGun._fireCounter <= 0)
-				FireShot();
+				StartCoroutine(FireShot());
 		}
 
 		//switch gun...
@@ -211,7 +213,7 @@ public class PlayerController : MonoBehaviour
 
 	#region Private Methods
 
-	void FireShot()
+	IEnumerator FireShot()
 	{
 		if(_activeGun._currentAmmo > 0)
 		{
@@ -222,6 +224,12 @@ public class PlayerController : MonoBehaviour
 			Instantiate(_activeGun._bullet, _activeGun._firePoint.position, _activeGun._firePoint.rotation);
 
 			_activeGun._fireCounter = _activeGun._fireRate;
+
+			_activeGun._muzzleFlash.SetActive(true);
+
+			yield return new WaitForSeconds(0.07f);
+
+			_activeGun._muzzleFlash.SetActive(false);
 		}
 	}
 
