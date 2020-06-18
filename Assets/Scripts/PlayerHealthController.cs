@@ -46,6 +46,7 @@ public class PlayerHealthController : MonoBehaviour
 	{
 		if (_invincibleCounter <= 0)
 		{
+			AudioManager.Instance.PlaySFX(7);
 			_currentHealth -= damageAmount;
 			_currentHealth = Mathf.Max(0, _currentHealth);
 
@@ -57,6 +58,8 @@ public class PlayerHealthController : MonoBehaviour
 			{
 				GameManager.Instance.PlayerDied();
 				AudioManager.Instance.StopBGM();
+				AudioManager.Instance.StopSFX(7);
+				AudioManager.Instance.PlaySFX(6);
 			}
 
 			_invincibleCounter = _invincibleLength;

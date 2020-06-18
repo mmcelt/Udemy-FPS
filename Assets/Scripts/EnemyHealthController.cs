@@ -26,7 +26,10 @@ public class EnemyHealthController : MonoBehaviour
 		_currentHealth = Mathf.Max(0, _currentHealth);
 
 		if (_currentHealth == 0)
+		{
 			Destroy(gameObject);
+			AudioManager.Instance.PlaySFX(2);
+		}
 	}
 	#endregion
 

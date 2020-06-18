@@ -20,6 +20,7 @@ public class WeaponPickup : MonoBehaviour
 		{
 			_collected = true;
 
+			AudioManager.Instance.PlaySFX(4);
 			PlayerController.Instance.AddGun(_theGun);
 
 			Destroy(gameObject);

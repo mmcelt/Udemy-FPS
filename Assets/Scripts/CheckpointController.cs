@@ -35,6 +35,7 @@ public class CheckpointController : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			PlayerPrefs.SetString(SceneManager.GetActiveScene().name + "_cp", _cpName);
+			AudioManager.Instance.PlaySFX(1);
 		}
 	}
 	#endregion

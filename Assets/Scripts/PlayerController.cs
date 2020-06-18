@@ -105,11 +105,13 @@ public class PlayerController : MonoBehaviour
 		{
 			//_canDoubleJump = true;
 			_moveInput.y = _jumpPower;
+			AudioManager.Instance.PlaySFX(8);
 		}
 		else if (Input.GetKeyDown(KeyCode.Space) && _canDoubleJump)
 		{
 			_moveInput.y = _jumpPower;
 			_canDoubleJump = false;
+			AudioManager.Instance.PlaySFX(8);
 		}
 
 		_controller.Move(_moveInput * Time.deltaTime);

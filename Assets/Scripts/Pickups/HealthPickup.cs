@@ -20,6 +20,7 @@ public class HealthPickup : MonoBehaviour
 		{
 			_collected = true;
 
+			AudioManager.Instance.PlaySFX(5);
 			PlayerHealthController.Instance.HealPlayer(_healAmount);
 
 			Destroy(gameObject);

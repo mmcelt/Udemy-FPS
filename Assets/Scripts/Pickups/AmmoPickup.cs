@@ -18,6 +18,7 @@ public class AmmoPickup : MonoBehaviour
 		{
 			_collected = true;
 
+			AudioManager.Instance.PlaySFX(3);
 			PlayerController.Instance._activeGun.GetAmmo();
 
 			Destroy(gameObject);
