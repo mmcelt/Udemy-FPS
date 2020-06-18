@@ -5290,6 +5290,9 @@ MonoBehaviour:
   _unlockableGuns:
   - {fileID: 5089894312054684620}
   _currentGun: 0
+  _footsteps:
+  - {fileID: 2144660002}
+  - {fileID: 1640242806}
 --- !u!143 &1755865401
 CharacterController:
   m_ObjectHideFlags: 0

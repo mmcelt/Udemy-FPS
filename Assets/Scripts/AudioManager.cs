@@ -8,8 +8,8 @@ public class AudioManager: MonoBehaviour
 
 	public static AudioManager Instance;
 
-	[SerializeField] AudioSource _bgm;
-	[SerializeField] AudioSource[] _soundEfects;
+	public AudioSource _bgm;
+	public AudioSource[] _soundEfects;
 
 	#endregion
 

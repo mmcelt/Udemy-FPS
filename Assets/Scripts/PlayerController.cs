@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
 	[SerializeField] int _currentGun;
 
+	public AudioSource[] _footsteps;
+
 	Vector3 _moveInput;
 	Vector3 _gunStartPos;
 	bool _canJump, _canDoubleJump;

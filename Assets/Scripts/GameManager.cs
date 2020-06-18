@@ -52,6 +52,16 @@ public class GameManager : MonoBehaviour
 		{
 			UIController.Instance._pauseScreen.SetActive(true);
 			Cursor.lockState = CursorLockMode.None;
+			//stop all non-player SFX...
+			for (int i = 0; i < AudioManager.Instance._soundEfects.Length; i++)
+			{
+				AudioManager.Instance.StopSFX(i);
+			}
+			//stop player footstep SFX
+			for(int i=0; i<PlayerController.Instance._footsteps.Length; i++)
+			{
+				PlayerController.Instance._footsteps[i].Stop();
+			}
 			Time.timeScale = 0;
 		}
 		else
@@ -59,6 +69,11 @@ public class GameManager : MonoBehaviour
 			UIController.Instance._pauseScreen.SetActive(false);
 			Cursor.lockState = CursorLockMode.Locked;
 			Time.timeScale = 1;
+			//restart player footstep SFX
+			for (int i = 0; i < PlayerController.Instance._footsteps.Length; i++)
+			{
+				PlayerController.Instance._footsteps[i].Play();
+			}
 
 		}
 	}
