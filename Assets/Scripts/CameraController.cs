@@ -36,8 +36,11 @@ public class CameraController : MonoBehaviour
 	
 	void LateUpdate() 
 	{
-		transform.position = _target.position;
-		transform.rotation = _target.rotation;
+		if(_target != null)
+		{
+			transform.position = _target.position;
+			transform.rotation = _target.rotation;
+		}
 
 		_theCamera.fieldOfView = Mathf.Lerp(_theCamera.fieldOfView, _targetFOV, _zoomSpeed * Time.deltaTime);
 	}
