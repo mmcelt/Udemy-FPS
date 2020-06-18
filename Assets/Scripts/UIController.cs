@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -13,6 +14,8 @@ public class UIController : MonoBehaviour
 	public Text _healthText, _ammoText;
 	public Image _damagEffect;
 	public float _damageAlpha = 0.25f, _damageFadeSpeed = 2f;
+	[SerializeField] string _menuScene;
+	public GameObject _pauseScreen;
 
 	#endregion
 
