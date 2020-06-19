@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 	Vector3 _moveInput;
 	Vector3 _gunStartPos;
 	bool _canJump, _canDoubleJump;
+	float _bounceAmount;
+	bool _bounce;
 
 	Animator _anim;
 
@@ -114,6 +116,13 @@ public class PlayerController : MonoBehaviour
 			_moveInput.y = _jumpPower;
 			_canDoubleJump = false;
 			AudioManager.Instance.PlaySFX(8);
+		}
+
+		if (_bounce)
+		{
+			_bounce = false;
+			_moveInput.y = _bounceAmount;
+			_canDoubleJump = true;
 		}
 
 		_controller.Move(_moveInput * Time.deltaTime);
@@ -214,6 +223,12 @@ public class PlayerController : MonoBehaviour
 			_currentGun = _allGuns.Count - 2;
 			SwitchGun();
 		}
+	}
+
+	public void Bounce(float bounceForce)
+	{
+		_bounceAmount = bounceForce;
+		_bounce = true;
 	}
 	#endregion
 
