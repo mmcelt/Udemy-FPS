@@ -40,6 +40,7 @@ public class VictoryScreen : MonoBehaviour
 	IEnumerator ActivateVictoryScreenRoutine()
 	{
 		yield return new WaitUntil(() => _fadePanel.color.a == 0);
+		Cursor.lockState = CursorLockMode.None;
 		yield return new WaitForSeconds(_headerTime);
 		_headerText.SetActive(true);
 		yield return new WaitForSeconds(_messageTime);

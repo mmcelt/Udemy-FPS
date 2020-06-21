@@ -12,10 +12,10 @@ public class UIController : MonoBehaviour
 
 	public Slider _healthSlider;
 	public Text _healthText, _ammoText;
-	public Image _damagEffect;
-	public float _damageAlpha = 0.25f, _damageFadeSpeed = 2f;
+	public Image _damagEffect, _fadePanel;
+	public float _damageAlpha = 0.25f, _damageFadeSpeed = 2f, _fadeSpeed = 1f;
 	[SerializeField] string _menuScene;
-	public GameObject _pauseScreen, _fadePanel;
+	public GameObject _pauseScreen;
 
 	#endregion
 
@@ -37,6 +37,15 @@ public class UIController : MonoBehaviour
 		{
 			_damagEffect.color = new Color(_damagEffect.color.r, _damagEffect.color.g, _damagEffect.color.b, Mathf.MoveTowards(_damagEffect.color.a, 0f, _damageFadeSpeed * Time.deltaTime));
 		}
+		//I DID THIS IN THE LEVEL EXIT SCRIPT...
+		//if (!GameManager.Instance._levelEnding)
+		//{
+		//	_fadePanel.color = new Color(_fadePanel.color.r, _fadePanel.color.g, _fadePanel.color.b, Mathf.MoveTowards(_fadePanel.color.a, 0f, _fadeSpeed * Time.deltaTime));
+		//}
+		//else
+		//{
+		//	_fadePanel.color = new Color(_fadePanel.color.r, _fadePanel.color.g, _fadePanel.color.b, Mathf.MoveTowards(_fadePanel.color.a, 1f, _fadeSpeed * Time.deltaTime));
+		//}
 	}
 	#endregion
 

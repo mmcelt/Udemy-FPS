@@ -20,7 +20,7 @@ public class LevelExit : MonoBehaviour
 
 	void Start() 
 	{
-		_fadePanelImage = UIController.Instance._fadePanel.GetComponent<Image>();
+		_fadePanelImage = UIController.Instance._fadePanel;
 		_fadePanelImage.color = new Color(0, 0, 0, 1);
 		StartCoroutine(StartLevelRoutine());
 	}

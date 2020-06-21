@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 	
 	void Update() 
 	{
-		if (UIController.Instance._pauseScreen.activeInHierarchy) return;
+		if (UIController.Instance._pauseScreen.activeInHierarchy || GameManager.Instance._levelEnding) return;
 
 		//move the player...
 		//_moveInput.x = Input.GetAxis("Horizontal");
