@@ -8,7 +8,7 @@ public class AudioManager: MonoBehaviour
 
 	public static AudioManager Instance;
 
-	public AudioSource _bgm;
+	public AudioSource _bgm, _levelComplete;
 	public AudioSource[] _soundEfects;
 
 	#endregion
@@ -36,6 +36,12 @@ public class AudioManager: MonoBehaviour
 	public void StopBGM()
 	{
 		_bgm.Stop();
+	}
+
+	public void PlayLevelComplete()
+	{
+		StopBGM();
+		_levelComplete.Play();
 	}
 
 	public void PlaySFX(int sfxIndex)

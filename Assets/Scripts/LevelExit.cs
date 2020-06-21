@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -53,9 +54,11 @@ public class LevelExit : MonoBehaviour
 	IEnumerator EndLevelRoutine()
 	{
 		_fadeOut = true;
+		AudioManager.Instance.PlayLevelComplete();
 		GameManager.Instance._levelEnding = true;
-		yield return new WaitUntil(() => _fadePanelImage.color.a == 1f);
-
+		PlayerPrefs.SetString(_nextLevel + "_cp", "");
+		//yield return new WaitUntil(() => _fadePanelImage.color.a == 1f);
+		yield return new WaitForSeconds(3.75f);	//wait for level ending music to finish
 		_fadeOut = false;
 		GameManager.Instance._levelEnding = false;
 		SceneManager.LoadScene(_nextLevel);
