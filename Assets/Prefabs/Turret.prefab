@@ -51,7 +51,8 @@ MonoBehaviour:
   _timeBetweenShots: 0.5
   _rotationSpeed: 5
   _gun: {fileID: 8859992067797650461}
-  _firePoint: {fileID: 4746677462959063421}
+  _portFirePoint: {fileID: 4746677462959063421}
+  _stbdFirePoint: {fileID: 6612953223147057023}
 --- !u!114 &4746677462088912779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4746677462959063421}
   m_Layer: 0
-  m_Name: Fire Point
+  m_Name: Port Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,11 +134,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4746677462959063420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6805587, z: -2.59}
+  m_LocalPosition: {x: -0.5, y: 0.6805587, z: -2.59}
   m_LocalScale: {x: 1.4925373, y: 1.4925373, z: 1.4925373}
   m_Children: []
   m_Father: {fileID: 8859992067797650461}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5532356418738148747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6612953223147057023}
+  m_Layer: 0
+  m_Name: Stbd Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6612953223147057023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5532356418738148747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.6805587, z: -2.59}
+  m_LocalScale: {x: 1.4925373, y: 1.4925373, z: 1.4925373}
+  m_Children: []
+  m_Father: {fileID: 8859992067797650461}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4746677462797628192
 PrefabInstance:

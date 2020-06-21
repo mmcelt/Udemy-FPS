@@ -8,7 +8,7 @@ public class Turret : MonoBehaviour
 
 	[SerializeField] GameObject _bullet;
 	[SerializeField] float _rangeToTarget, _timeBetweenShots = 0.5f, _rotationSpeed = 45f;
-	[SerializeField] Transform _gun, _firePoint;
+	[SerializeField] Transform _gun, _portFirePoint, _stbdFirePoint;
 
 	float _shotCounter;
 
@@ -31,7 +31,8 @@ public class Turret : MonoBehaviour
 
 			if (_shotCounter <= 0)
 			{
-				Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+				Instantiate(_bullet, _portFirePoint.position, _portFirePoint.rotation);
+				Instantiate(_bullet, _stbdFirePoint.position, _stbdFirePoint.rotation);
 				_shotCounter = _timeBetweenShots;
 			}
 		}
