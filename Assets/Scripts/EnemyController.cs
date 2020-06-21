@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
 	void Update()
 	{
-		if (!PlayerController.Instance.gameObject.activeInHierarchy) return;
+		if (!PlayerController.Instance.gameObject.activeInHierarchy || GameManager.Instance._levelEnding) return;
 
 		_targetPoint = PlayerController.Instance.transform.position;
 		_targetPoint.y = transform.position.y;

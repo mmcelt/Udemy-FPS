@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance;
 
 	[SerializeField] float _waitAfterDying = 2f;
+	[HideInInspector] public bool _levelEnding;
 
 	#endregion
 

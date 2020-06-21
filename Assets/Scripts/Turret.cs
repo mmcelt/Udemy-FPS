@@ -23,6 +23,8 @@ public class Turret : MonoBehaviour
 	
 	void Update() 
 	{
+		if (GameManager.Instance._levelEnding) return;
+
 		if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToTarget)
 		{
 			_gun.LookAt(PlayerController.Instance.transform.position + new Vector3(0f, 1.2f, 0f));
