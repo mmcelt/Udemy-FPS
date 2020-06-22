@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
 	public AudioSource[] _footsteps;
 
+	[SerializeField] float _maxViewAngle = 60f;
+
 	Vector3 _moveInput;
 	Vector3 _gunStartPos;
 	bool _canJump, _canDoubleJump;
@@ -143,6 +145,14 @@ public class PlayerController : MonoBehaviour
 
 		_theCamera.rotation = Quaternion.Euler(_theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
+		if (_theCamera.rotation.eulerAngles.x > _maxViewAngle && _theCamera.rotation.eulerAngles.x < 180f)
+		{
+			_theCamera.rotation = Quaternion.Euler(_maxViewAngle, _theCamera.rotation.eulerAngles.y, _theCamera.rotation.eulerAngles.z);
+		}
+		else if(_theCamera.rotation.eulerAngles.x >180f && _theCamera.rotation.eulerAngles.x < 360f - _maxViewAngle)
+		{
+			_theCamera.rotation = Quaternion.Euler(-_maxViewAngle, _theCamera.rotation.eulerAngles.y, _theCamera.rotation.eulerAngles.z);
+		}
 		//if (_activeGun._muzzleFlash.activeInHierarchy)
 		//	_activeGun._muzzleFlash.SetActive(false);
 
