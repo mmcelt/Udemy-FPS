@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 	void Start() 
 	{
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 
 	void Update()
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
 		{
 			UIController.Instance._pauseScreen.SetActive(true);
 			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
 			//stop all non-player SFX...
 			for (int i = 0; i < AudioManager.Instance._soundEfects.Length; i++)
 			{
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
 		{
 			UIController.Instance._pauseScreen.SetActive(false);
 			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
 			Time.timeScale = 1;
 			//restart player footstep SFX
 			for (int i = 0; i < PlayerController.Instance._footsteps.Length; i++)
