@@ -57,6 +57,7 @@ public class LevelExit : MonoBehaviour
 		AudioManager.Instance.PlayLevelComplete();
 		GameManager.Instance._levelEnding = true;
 		PlayerPrefs.SetString(_nextLevel + "_cp", "");
+		PlayerPrefs.SetString("CurrentLevel", _nextLevel);
 		//yield return new WaitUntil(() => _fadePanelImage.color.a == 1f);
 		yield return new WaitForSeconds(3.75f);	//wait for level ending music to finish
 		_fadeOut = false;

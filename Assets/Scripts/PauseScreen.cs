@@ -37,7 +37,7 @@ public class PauseScreen : MonoBehaviour
 
 	public void MainMenuButtonClicked()
 	{
-		Time.timeScale = 1;
+		Time.timeScale = 1f;
 		SceneManager.LoadScene(_menuScene);
 	}
 

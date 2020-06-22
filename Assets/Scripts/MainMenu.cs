@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 	#region Fields
 
 	[SerializeField] string _firstLevel;
+	[SerializeField] GameObject _continueButton;
 
 	#endregion
 
@@ -15,7 +16,15 @@ public class MainMenu : MonoBehaviour
 
 	void Start() 
 	{
-		
+		if (PlayerPrefs.HasKey("CurrentLevel"))
+		{
+			if(PlayerPrefs.GetString("CurrentLevel") == "")
+				_continueButton.SetActive(false);
+		}
+		else
+		{
+			_continueButton.SetActive(false);
+		}
 	}
 	
 	void Update() 
@@ -26,8 +35,15 @@ public class MainMenu : MonoBehaviour
 
 	#region Public Methods
 
+	public void ContinueButtonClicked()
+	{
+		SceneManager.LoadScene(PlayerPrefs.GetString("CurrentLevel"));
+	}
+
 	public void PlayButtonClicked()
 	{
+		PlayerPrefs.SetString("CurrentLevel", "");
+		PlayerPrefs.SetString(_firstLevel + "_cp", "");
 		SceneManager.LoadScene(_firstLevel);
 	}
 
