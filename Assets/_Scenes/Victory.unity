@@ -1298,7 +1298,7 @@ MonoBehaviour:
   _returnButton: {fileID: 905003724}
   _fadePanel: {fileID: 914776786}
   _fadeTime: 1
-  _headerTime: 0.5
-  _messageTime: 1
-  _buttonTime: 1.5
+  _headerTime: 0.25
+  _messageTime: 0.75
+  _buttonTime: 1.25
   _mainMenuScene: MainMenu
