@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 5
+  _theEC: {fileID: 3554824186108224098}
 --- !u!114 &3554824186108224098
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class EnemyHealthController : MonoBehaviour
 	#region Fields
 
 	[SerializeField] int _currentHealth;
+	[SerializeField] EnemyController _theEC;
 
 	#endregion
 
@@ -24,6 +25,11 @@ public class EnemyHealthController : MonoBehaviour
 	{
 		_currentHealth -= damageAmount;
 		_currentHealth = Mathf.Max(0, _currentHealth);
+
+		if (_theEC != null)
+		{
+			_theEC.GotShot();
+		}
 
 		if (_currentHealth == 0)
 		{

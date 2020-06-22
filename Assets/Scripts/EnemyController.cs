@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
 
 	float _fireCounter, _shotWaitCounter, _shootTimeCounter;
 
-	bool _chasing;
+	bool _chasing, _wasShot;
 	Vector3 _targetPoint, _startPoint;
 	float _chaseCounter;
 
@@ -87,9 +87,16 @@ public class EnemyController : MonoBehaviour
 			//the enemy has lost the player...
 			if (Vector3.Distance(transform.position, _targetPoint) >= _distanceToLose)
 			{
-				_chasing = false;
+				if (!_wasShot)
+				{
+					_chasing = false;
 
-				_chaseCounter = _keepChasingTime;
+					_chaseCounter = _keepChasingTime;
+				}
+			}
+			else
+			{
+				_wasShot = false;
 			}
 
 			//moving & waiting to shoot...
@@ -152,7 +159,11 @@ public class EnemyController : MonoBehaviour
 
 	#region Public Methods
 
-
+	public void GotShot()
+	{
+		_wasShot = true;
+		_chasing = true;
+	}
 	#endregion
 
 	#region Private Methods
